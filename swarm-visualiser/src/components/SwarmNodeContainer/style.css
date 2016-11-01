@@ -1,0 +1,32 @@
+.SwarmNodeContainer {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 3px;
+
+    position: relative;
+}
+
+.SwarmNodeContainer-Header-Status-stopped {
+    background: red;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.SwarmNodeContainer-Header-Status-running {
+    background: green;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.SwarmNodeContainer h1 {
+    font-size: 12px;
+}

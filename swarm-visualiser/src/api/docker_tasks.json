@@ -1,0 +1,591 @@
+[
+  {
+    "ID": "0vn30mp5qstip7i4ocvt3w3se",
+    "Version": {
+      "Index": 38
+    },
+    "CreatedAt": "2016-11-01T13:04:20.738698631Z",
+    "UpdatedAt": "2016-11-01T13:04:23.699317935Z",
+    "Spec": {
+      "ContainerSpec": {
+        "Image": "flozano/kafka",
+        "Env": [
+          "KAFKA=10.0.7.11:9092",
+          "ZOOKEEPER=10.0.7.11:2181"
+        ]
+      },
+      "Resources": {
+        "Limits": {},
+        "Reservations": {
+          "MemoryBytes": 3221225472
+        }
+      },
+      "RestartPolicy": {
+        "Condition": "any",
+        "MaxAttempts": 0
+      },
+      "Placement": {}
+    },
+    "ServiceID": "25kfcdre3x223hksp3kxacn29",
+    "Slot": 1,
+    "NodeID": "6l8vwkh9bx1hweea70qdtci3k",
+    "Status": {
+      "Timestamp": "2016-11-01T13:04:23.664655302Z",
+      "State": "running",
+      "Message": "started",
+      "ContainerStatus": {
+        "ContainerID": "e80e7f183f09d55f331217da6b22304fc4c67f6b5bb4815e2946c1bf280a7460",
+        "PID": 2650
+      }
+    },
+    "DesiredState": "running",
+    "NetworksAttachments": [
+      {
+        "Network": {
+          "ID": "4h9nor6ul91sj8atl91b1bzts",
+          "Version": {
+            "Index": 7
+          },
+          "CreatedAt": "2016-11-01T13:04:16.422730546Z",
+          "UpdatedAt": "2016-11-01T13:04:16.423598321Z",
+          "Spec": {
+            "Name": "ingress",
+            "Labels": {
+              "com.docker.swarm.internal": "true"
+            },
+            "DriverConfiguration": {},
+            "IPAMOptions": {
+              "Driver": {},
+              "Configs": [
+                {
+                  "Subnet": "10.255.0.0/16",
+                  "Gateway": "10.255.0.1"
+                }
+              ]
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "256"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.255.0.0/16",
+                "Gateway": "10.255.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.255.0.7/16"
+        ]
+      },
+      {
+        "Network": {
+          "ID": "973y372ib0liqofd4y0071cjg",
+          "Version": {
+            "Index": 23
+          },
+          "CreatedAt": "2016-11-01T13:04:20.723931048Z",
+          "UpdatedAt": "2016-11-01T13:04:20.725356283Z",
+          "Spec": {
+            "Name": "monitoring",
+            "DriverConfiguration": {
+              "Name": "overlay"
+            },
+            "IPAMOptions": {
+              "Driver": {
+                "Name": "default"
+              }
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "257"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.0.0.0/24",
+                "Gateway": "10.0.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.0.0.3/24"
+        ]
+      }
+    ]
+  },
+  {
+    "ID": "3or227auf151let2u0xc7gtpz",
+    "Version": {
+      "Index": 67
+    },
+    "CreatedAt": "2016-11-01T13:04:25.031655644Z",
+    "UpdatedAt": "2016-11-01T13:04:30.64157593Z",
+    "Spec": {
+      "ContainerSpec": {
+        "Image": "google/cadvisor:latest",
+        "Args": [
+          "-storage_driver=kafka",
+          "-storage_driver_kafka_broker_list=kafka:9092",
+          "-storage_driver_kafka_topic=container_stats"
+        ],
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "/",
+            "Target": "/rootfs",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "/var/run",
+            "Target": "/var/run"
+          },
+          {
+            "Type": "bind",
+            "Source": "/sys",
+            "Target": "/sys",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "/var/lib/docker/",
+            "Target": "/var/lib/docker",
+            "ReadOnly": true
+          }
+        ]
+      },
+      "Resources": {
+        "Limits": {},
+        "Reservations": {}
+      },
+      "RestartPolicy": {
+        "Condition": "any",
+        "MaxAttempts": 0
+      },
+      "Placement": {}
+    },
+    "ServiceID": "1herijp9334p89bt7iru6w5eo",
+    "NodeID": "7aqb9ptmjjol031xm5ijxjans",
+    "Status": {
+      "Timestamp": "2016-11-01T13:04:30.540960471Z",
+      "State": "running",
+      "Message": "started",
+      "ContainerStatus": {
+        "ContainerID": "abce28b78240b515534bbc091002f6491caf767a1251d131f33f24f4b82e2a33",
+        "PID": 2995
+      }
+    },
+    "DesiredState": "running",
+    "NetworksAttachments": [
+      {
+        "Network": {
+          "ID": "4h9nor6ul91sj8atl91b1bzts",
+          "Version": {
+            "Index": 7
+          },
+          "CreatedAt": "2016-11-01T13:04:16.422730546Z",
+          "UpdatedAt": "2016-11-01T13:04:16.423598321Z",
+          "Spec": {
+            "Name": "ingress",
+            "Labels": {
+              "com.docker.swarm.internal": "true"
+            },
+            "DriverConfiguration": {},
+            "IPAMOptions": {
+              "Driver": {},
+              "Configs": [
+                {
+                  "Subnet": "10.255.0.0/16",
+                  "Gateway": "10.255.0.1"
+                }
+              ]
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "256"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.255.0.0/16",
+                "Gateway": "10.255.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.255.0.10/16"
+        ]
+      },
+      {
+        "Network": {
+          "ID": "973y372ib0liqofd4y0071cjg",
+          "Version": {
+            "Index": 23
+          },
+          "CreatedAt": "2016-11-01T13:04:20.723931048Z",
+          "UpdatedAt": "2016-11-01T13:04:20.725356283Z",
+          "Spec": {
+            "Name": "monitoring",
+            "DriverConfiguration": {
+              "Name": "overlay"
+            },
+            "IPAMOptions": {
+              "Driver": {
+                "Name": "default"
+              }
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "257"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.0.0.0/24",
+                "Gateway": "10.0.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.0.0.6/24"
+        ]
+      }
+    ]
+  },
+  {
+    "ID": "7qo8mxvyyc6y2y83exfofkaeu",
+    "Version": {
+      "Index": 71
+    },
+    "CreatedAt": "2016-11-01T13:04:25.841271319Z",
+    "UpdatedAt": "2016-11-01T13:04:31.264491014Z",
+    "Spec": {
+      "ContainerSpec": {
+        "Image": "google/cadvisor:latest",
+        "Args": [
+          "-storage_driver=kafka",
+          "-storage_driver_kafka_broker_list=kafka:9092",
+          "-storage_driver_kafka_topic=container_stats"
+        ],
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "/",
+            "Target": "/rootfs",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "/var/run",
+            "Target": "/var/run"
+          },
+          {
+            "Type": "bind",
+            "Source": "/sys",
+            "Target": "/sys",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "/var/lib/docker/",
+            "Target": "/var/lib/docker",
+            "ReadOnly": true
+          }
+        ]
+      },
+      "Resources": {
+        "Limits": {},
+        "Reservations": {}
+      },
+      "RestartPolicy": {
+        "Condition": "any",
+        "MaxAttempts": 0
+      },
+      "Placement": {}
+    },
+    "ServiceID": "1herijp9334p89bt7iru6w5eo",
+    "NodeID": "6l8vwkh9bx1hweea70qdtci3k",
+    "Status": {
+      "Timestamp": "2016-11-01T13:04:31.229321625Z",
+      "State": "running",
+      "Message": "started",
+      "ContainerStatus": {
+        "ContainerID": "cc42c0dddbaf411e8523377cb1d0081b776e4a064654fe7030d394d48ad0784c",
+        "PID": 3175
+      }
+    },
+    "DesiredState": "running",
+    "NetworksAttachments": [
+      {
+        "Network": {
+          "ID": "4h9nor6ul91sj8atl91b1bzts",
+          "Version": {
+            "Index": 7
+          },
+          "CreatedAt": "2016-11-01T13:04:16.422730546Z",
+          "UpdatedAt": "2016-11-01T13:04:16.423598321Z",
+          "Spec": {
+            "Name": "ingress",
+            "Labels": {
+              "com.docker.swarm.internal": "true"
+            },
+            "DriverConfiguration": {},
+            "IPAMOptions": {
+              "Driver": {},
+              "Configs": [
+                {
+                  "Subnet": "10.255.0.0/16",
+                  "Gateway": "10.255.0.1"
+                }
+              ]
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "256"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.255.0.0/16",
+                "Gateway": "10.255.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.255.0.9/16"
+        ]
+      },
+      {
+        "Network": {
+          "ID": "973y372ib0liqofd4y0071cjg",
+          "Version": {
+            "Index": 23
+          },
+          "CreatedAt": "2016-11-01T13:04:20.723931048Z",
+          "UpdatedAt": "2016-11-01T13:04:20.725356283Z",
+          "Spec": {
+            "Name": "monitoring",
+            "DriverConfiguration": {
+              "Name": "overlay"
+            },
+            "IPAMOptions": {
+              "Driver": {
+                "Name": "default"
+              }
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "257"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.0.0.0/24",
+                "Gateway": "10.0.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.0.0.5/24"
+        ]
+      }
+    ]
+  },
+  {
+    "ID": "cdzoyoghe28nsfosx4ytxia5m",
+    "Version": {
+      "Index": 69
+    },
+    "CreatedAt": "2016-11-01T13:04:25.336149689Z",
+    "UpdatedAt": "2016-11-01T13:04:30.84775946Z",
+    "Spec": {
+      "ContainerSpec": {
+        "Image": "google/cadvisor:latest",
+        "Args": [
+          "-storage_driver=kafka",
+          "-storage_driver_kafka_broker_list=kafka:9092",
+          "-storage_driver_kafka_topic=container_stats"
+        ],
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "/",
+            "Target": "/rootfs",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "/var/run",
+            "Target": "/var/run"
+          },
+          {
+            "Type": "bind",
+            "Source": "/sys",
+            "Target": "/sys",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "/var/lib/docker/",
+            "Target": "/var/lib/docker",
+            "ReadOnly": true
+          }
+        ]
+      },
+      "Resources": {
+        "Limits": {},
+        "Reservations": {}
+      },
+      "RestartPolicy": {
+        "Condition": "any",
+        "MaxAttempts": 0
+      },
+      "Placement": {}
+    },
+    "ServiceID": "1herijp9334p89bt7iru6w5eo",
+    "NodeID": "8fw7t7f431o53q1y6r8ul0br2",
+    "Status": {
+      "Timestamp": "2016-11-01T13:04:30.831025531Z",
+      "State": "running",
+      "Message": "started",
+      "ContainerStatus": {
+        "ContainerID": "f424535df653912976e18f8e0589d35e842c16274abed618c54698e1779ce677",
+        "PID": 3528
+      }
+    },
+    "DesiredState": "running",
+    "NetworksAttachments": [
+      {
+        "Network": {
+          "ID": "4h9nor6ul91sj8atl91b1bzts",
+          "Version": {
+            "Index": 7
+          },
+          "CreatedAt": "2016-11-01T13:04:16.422730546Z",
+          "UpdatedAt": "2016-11-01T13:04:16.423598321Z",
+          "Spec": {
+            "Name": "ingress",
+            "Labels": {
+              "com.docker.swarm.internal": "true"
+            },
+            "DriverConfiguration": {},
+            "IPAMOptions": {
+              "Driver": {},
+              "Configs": [
+                {
+                  "Subnet": "10.255.0.0/16",
+                  "Gateway": "10.255.0.1"
+                }
+              ]
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "256"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.255.0.0/16",
+                "Gateway": "10.255.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.255.0.11/16"
+        ]
+      },
+      {
+        "Network": {
+          "ID": "973y372ib0liqofd4y0071cjg",
+          "Version": {
+            "Index": 23
+          },
+          "CreatedAt": "2016-11-01T13:04:20.723931048Z",
+          "UpdatedAt": "2016-11-01T13:04:20.725356283Z",
+          "Spec": {
+            "Name": "monitoring",
+            "DriverConfiguration": {
+              "Name": "overlay"
+            },
+            "IPAMOptions": {
+              "Driver": {
+                "Name": "default"
+              }
+            }
+          },
+          "DriverState": {
+            "Name": "overlay",
+            "Options": {
+              "com.docker.network.driver.overlay.vxlanid_list": "257"
+            }
+          },
+          "IPAMOptions": {
+            "Driver": {
+              "Name": "default"
+            },
+            "Configs": [
+              {
+                "Subnet": "10.0.0.0/24",
+                "Gateway": "10.0.0.1"
+              }
+            ]
+          }
+        },
+        "Addresses": [
+          "10.0.0.7/24"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+.Swarm {
+    background: #445d6e;
+    height: 100%;
+    border: 2px solid #547287;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: stretch;
+
+    position: relative;
+}

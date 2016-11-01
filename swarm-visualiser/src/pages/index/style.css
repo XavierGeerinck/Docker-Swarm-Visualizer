@@ -1,0 +1,35 @@
+.IndexPage {
+    text-align: center;
+    background-color: #254356;
+    color: white;
+    height: 100%;
+}
+
+.IndexPage-Header {
+    border-bottom: 1px solid #445d6e;
+    height: 150px;
+}
+
+.IndexPage-Content {
+    padding: 20px 40px;
+    height: calc(100% - 202px); /* 200 box size and 2px borders */
+    box-sizing: border-box;
+}
+
+.IndexPage-Footer {
+    border-top: 1px solid #445d6e;
+    height: 50px;
+}
+
+.App-header {
+
+}
+
+.App-intro {
+    font-size: large;
+}
+
+@keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

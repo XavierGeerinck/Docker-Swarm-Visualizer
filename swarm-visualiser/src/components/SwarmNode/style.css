@@ -1,0 +1,40 @@
+.SwarmNode {
+    flex: 1;
+
+    position: relative;
+}
+
+.SwarmNode-Header {
+    height: 90px;
+}
+
+.SwarmNode-Header h1 {
+    margin: 10px 0 0 0;
+    padding: 5px 0;
+    font-size: 20px;
+    color: #dedede;
+}
+
+.SwarmNode-Header h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #dedede;
+}
+
+.SwarmNode-Header p {
+    margin: 5px 0 0 0;
+    padding: 0;
+    font-size: 12px;
+    color: #dedede;
+}
+
+.SwarmNode-Containers {
+    border: 2px solid #547287;
+    background-color: #254356;
+    margin: 0 20px;
+
+    height: calc(100% - 100px - 20px);
+
+    overflow-y: auto;
+}

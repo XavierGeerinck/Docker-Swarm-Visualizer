@@ -1,0 +1,162 @@
+{
+  "objects": [
+    {
+      "ID": "6l8vwkh9bx1hweea70qdtci3k",
+      "Version": {
+        "Index": 16
+      },
+      "CreatedAt": "2016-11-01T13:04:18.770762502Z",
+      "UpdatedAt": "2016-11-01T13:04:18.779680053Z",
+      "Spec": {
+        "Role": "worker",
+        "Availability": "active"
+      },
+      "Description": {
+        "Hostname": "swarm-agent-00",
+        "Platform": {
+          "Architecture": "x86_64",
+          "OS": "linux"
+        },
+        "Resources": {
+          "NanoCPUs": 2000000000,
+          "MemoryBytes": 4145348608
+        },
+        "Engine": {
+          "EngineVersion": "1.12.2",
+          "Plugins": [
+            {
+              "Type": "Network",
+              "Name": "bridge"
+            },
+            {
+              "Type": "Network",
+              "Name": "host"
+            },
+            {
+              "Type": "Network",
+              "Name": "null"
+            },
+            {
+              "Type": "Network",
+              "Name": "overlay"
+            },
+            {
+              "Type": "Volume",
+              "Name": "local"
+            }
+          ]
+        }
+      },
+      "Status": {
+        "State": "ready"
+      }
+    },
+    {
+      "ID": "7aqb9ptmjjol031xm5ijxjans",
+      "Version": {
+        "Index": 21
+      },
+      "CreatedAt": "2016-11-01T13:04:20.693847194Z",
+      "UpdatedAt": "2016-11-01T13:04:20.703732845Z",
+      "Spec": {
+        "Role": "worker",
+        "Availability": "active"
+      },
+      "Description": {
+        "Hostname": "swarm-agent-01",
+        "Platform": {
+          "Architecture": "x86_64",
+          "OS": "linux"
+        },
+        "Resources": {
+          "NanoCPUs": 2000000000,
+          "MemoryBytes": 4145348608
+        },
+        "Engine": {
+          "EngineVersion": "1.12.2",
+          "Plugins": [
+            {
+              "Type": "Network",
+              "Name": "bridge"
+            },
+            {
+              "Type": "Network",
+              "Name": "host"
+            },
+            {
+              "Type": "Network",
+              "Name": "null"
+            },
+            {
+              "Type": "Network",
+              "Name": "overlay"
+            },
+            {
+              "Type": "Volume",
+              "Name": "local"
+            }
+          ]
+        }
+      },
+      "Status": {
+        "State": "ready"
+      }
+    },
+    {
+      "ID": "8fw7t7f431o53q1y6r8ul0br2",
+      "Version": {
+        "Index": 10
+      },
+      "CreatedAt": "2016-11-01T13:04:16.420872904Z",
+      "UpdatedAt": "2016-11-01T13:04:16.43001321Z",
+      "Spec": {
+        "Role": "manager",
+        "Availability": "active"
+      },
+      "Description": {
+        "Hostname": "swarm-manager-00",
+        "Platform": {
+          "Architecture": "x86_64",
+          "OS": "linux"
+        },
+        "Resources": {
+          "NanoCPUs": 2000000000,
+          "MemoryBytes": 1042104320
+        },
+        "Engine": {
+          "EngineVersion": "1.12.2",
+          "Plugins": [
+            {
+              "Type": "Network",
+              "Name": "bridge"
+            },
+            {
+              "Type": "Network",
+              "Name": "host"
+            },
+            {
+              "Type": "Network",
+              "Name": "null"
+            },
+            {
+              "Type": "Network",
+              "Name": "overlay"
+            },
+            {
+              "Type": "Volume",
+              "Name": "local"
+            }
+          ]
+        }
+      },
+      "Status": {
+        "State": "ready"
+      },
+      "ManagerStatus": {
+        "Leader": true,
+        "Reachability": "reachable",
+        "Addr": "10.0.7.11:2377"
+      }
+    }
+  ]
+}

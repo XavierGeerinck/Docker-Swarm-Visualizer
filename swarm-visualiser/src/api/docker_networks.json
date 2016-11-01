@@ -1,0 +1,147 @@
+{
+  "objects": [
+    {
+      "Name": "ingress",
+      "Id": "4h9nor6ul91sj8atl91b1bzts",
+      "Scope": "swarm",
+      "Driver": "overlay",
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "",
+        "Options": null,
+        "Config": [
+          {
+            "Subnet": "10.255.0.0/16",
+            "Gateway": "10.255.0.1"
+          }
+        ]
+      },
+      "Internal": false,
+      "Containers": null,
+      "Options": {
+        "com.docker.network.driver.overlay.vxlanid_list": "256"
+      },
+      "Labels": {
+        "com.docker.swarm.internal": "true"
+      }
+    },
+    {
+      "Name": "monitoring",
+      "Id": "973y372ib0liqofd4y0071cjg",
+      "Scope": "swarm",
+      "Driver": "overlay",
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": []
+      },
+      "Internal": false,
+      "Containers": null,
+      "Options": {
+        "com.docker.network.driver.overlay.vxlanid_list": "257"
+      },
+      "Labels": null
+    },
+    {
+      "Name": "bridge",
+      "Id": "e22a042c91e9c737aaafdf79bde027c98ae5ab5cdbfe18171a13653cc6a62a88",
+      "Scope": "local",
+      "Driver": "bridge",
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": [
+          {
+            "Subnet": "172.17.0.0/16",
+            "Gateway": "172.17.0.1"
+          }
+        ]
+      },
+      "Internal": false,
+      "Containers": {},
+      "Options": {
+        "com.docker.network.bridge.default_bridge": "true",
+        "com.docker.network.bridge.enable_icc": "true",
+        "com.docker.network.bridge.enable_ip_masquerade": "true",
+        "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+        "com.docker.network.bridge.name": "docker0",
+        "com.docker.network.driver.mtu": "1500"
+      },
+      "Labels": {}
+    },
+    {
+      "Name": "docker_gwbridge",
+      "Id": "bd145c93f8e920a252684e403af28bfed02cd0c351c1849ee97ea42d86c69e59",
+      "Scope": "local",
+      "Driver": "bridge",
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": [
+          {
+            "Subnet": "172.18.0.0/16",
+            "Gateway": "172.18.0.1"
+          }
+        ]
+      },
+      "Internal": false,
+      "Containers": {
+        "f424535df653912976e18f8e0589d35e842c16274abed618c54698e1779ce677": {
+          "Name": "gateway_f424535df653",
+          "EndpointID": "3f31a8fb31c0ef0ffeeb9854c89b64ec961125f52048dafe5a9c6ad5f5c6a26b",
+          "MacAddress": "02:42:ac:12:00:03",
+          "IPv4Address": "172.18.0.3/16",
+          "IPv6Address": ""
+        },
+        "ingress-sbox": {
+          "Name": "gateway_ingress-sbox",
+          "EndpointID": "8ee6bd28bc12ec7a6204b0e64e03b222647c8a91f597218a23b5031a50712bb0",
+          "MacAddress": "02:42:ac:12:00:02",
+          "IPv4Address": "172.18.0.2/16",
+          "IPv6Address": ""
+        }
+      },
+      "Options": {
+        "com.docker.network.bridge.enable_icc": "false",
+        "com.docker.network.bridge.enable_ip_masquerade": "true",
+        "com.docker.network.bridge.name": "docker_gwbridge"
+      },
+      "Labels": {}
+    },
+    {
+      "Name": "none",
+      "Id": "e36a7c2771043ed04b22869745afabf7ce58fe5446689680f5a3906913e30fbd",
+      "Scope": "local",
+      "Driver": "null",
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": []
+      },
+      "Internal": false,
+      "Containers": {},
+      "Options": {},
+      "Labels": {}
+    },
+    {
+      "Name": "host",
+      "Id": "40b0c9bb9bcb7a8f8697d0d1f813fac8d4f89b1dbac67b5389e2dd6e2410f9d7",
+      "Scope": "local",
+      "Driver": "host",
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": []
+      },
+      "Internal": false,
+      "Containers": {},
+      "Options": {},
+      "Labels": {}
+    }
+  ]
+}

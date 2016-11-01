@@ -1,0 +1,144 @@
+{
+  "objects": {
+    "ID": "XE47:2MZZ:DXL3:KEI2:YHUB:5GUS:4OYP:ZS6P:UNAP:FCJP:YHE7:T74R",
+    "Containers": 78,
+    "ContainersRunning": 1,
+    "ContainersPaused": 0,
+    "ContainersStopped": 77,
+    "Images": 11,
+    "Driver": "aufs",
+    "DriverStatus": [
+      [
+        "Root Dir",
+        "/var/lib/docker/aufs"
+      ],
+      [
+        "Backing Filesystem",
+        "extfs"
+      ],
+      [
+        "Dirs",
+        "173"
+      ],
+      [
+        "Dirperm1 Supported",
+        "false"
+      ]
+    ],
+    "SystemStatus": null,
+    "Plugins": {
+      "Volume": [
+        "local"
+      ],
+      "Network": [
+        "host",
+        "bridge",
+        "null",
+        "overlay"
+      ],
+      "Authorization": null
+    },
+    "MemoryLimit": true,
+    "SwapLimit": false,
+    "KernelMemory": true,
+    "CpuCfsPeriod": true,
+    "CpuCfsQuota": true,
+    "CPUShares": true,
+    "CPUSet": true,
+    "IPv4Forwarding": true,
+    "BridgeNfIptables": true,
+    "BridgeNfIp6tables": true,
+    "Debug": false,
+    "NFd": 48,
+    "OomKillDisable": true,
+    "NGoroutines": 150,
+    "SystemTime": "2016-11-01T13:11:06.671081116Z",
+    "ExecutionDriver": "",
+    "LoggingDriver": "json-file",
+    "CgroupDriver": "cgroupfs",
+    "NEventsListener": 1,
+    "KernelVersion": "3.13.0-98-generic",
+    "OperatingSystem": "Ubuntu 14.04.5 LTS",
+    "OSType": "linux",
+    "Architecture": "x86_64",
+    "IndexServerAddress": "https://index.docker.io/v1/",
+    "RegistryConfig": {
+      "InsecureRegistryCIDRs": [
+        "127.0.0.0/8"
+      ],
+      "IndexConfigs": {
+        "docker.io": {
+          "Name": "docker.io",
+          "Mirrors": null,
+          "Secure": true,
+          "Official": true
+        }
+      },
+      "Mirrors": null
+    },
+    "NCPU": 2,
+    "MemTotal": 1042104320,
+    "DockerRootDir": "/var/lib/docker",
+    "HttpProxy": "",
+    "HttpsProxy": "",
+    "NoProxy": "",
+    "Name": "swarm-manager-00",
+    "Labels": null,
+    "ExperimentalBuild": false,
+    "ServerVersion": "1.12.2",
+    "ClusterStore": "",
+    "ClusterAdvertise": "",
+    "SecurityOptions": [
+      "apparmor"
+    ],
+    "Runtimes": {
+      "runc": {
+        "path": "docker-runc"
+      }
+    },
+    "DefaultRuntime": "runc",
+    "Swarm": {
+      "NodeID": "8fw7t7f431o53q1y6r8ul0br2",
+      "NodeAddr": "10.0.7.11",
+      "LocalNodeState": "active",
+      "ControlAvailable": true,
+      "Error": "",
+      "RemoteManagers": [
+        {
+          "NodeID": "8fw7t7f431o53q1y6r8ul0br2",
+          "Addr": "10.0.7.11:2377"
+        }
+      ],
+      "Nodes": 3,
+      "Managers": 1,
+      "Cluster": {
+        "ID": "2xrc5qm8dd1ftjcd6yy8g20d1",
+        "Version": {
+          "Index": 11
+        },
+        "CreatedAt": "2016-11-01T13:04:16.420846472Z",
+        "UpdatedAt": "2016-11-01T13:04:16.432593863Z",
+        "Spec": {
+          "Name": "default",
+          "Orchestration": {
+            "TaskHistoryRetentionLimit": 5
+          },
+          "Raft": {
+            "SnapshotInterval": 10000,
+            "LogEntriesForSlowFollowers": 500,
+            "HeartbeatTick": 1,
+            "ElectionTick": 3
+          },
+          "Dispatcher": {
+            "HeartbeatPeriod": 5000000000
+          },
+          "CAConfig": {
+            "NodeCertExpiry": 7776000000000000
+          },
+          "TaskDefaults": {}
+        }
+      }
+    },
+    "LiveRestoreEnabled": false
+  }
+}

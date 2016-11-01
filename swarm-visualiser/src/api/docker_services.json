@@ -1,0 +1,217 @@
+{
+  "objects": [
+    {
+      "ID": "1herijp9334p89bt7iru6w5eo",
+      "Version": {
+        "Index": 30
+      },
+      "CreatedAt": "2016-11-01T13:04:20.763954826Z",
+      "UpdatedAt": "2016-11-01T13:04:20.765768347Z",
+      "Spec": {
+        "Name": "cadvisor",
+        "TaskTemplate": {
+          "ContainerSpec": {
+            "Image": "google/cadvisor:latest",
+            "Args": [
+              "-storage_driver=kafka",
+              "-storage_driver_kafka_broker_list=kafka:9092",
+              "-storage_driver_kafka_topic=container_stats"
+            ],
+            "Mounts": [
+              {
+                "Type": "bind",
+                "Source": "/",
+                "Target": "/rootfs",
+                "ReadOnly": true
+              },
+              {
+                "Type": "bind",
+                "Source": "/var/run",
+                "Target": "/var/run"
+              },
+              {
+                "Type": "bind",
+                "Source": "/sys",
+                "Target": "/sys",
+                "ReadOnly": true
+              },
+              {
+                "Type": "bind",
+                "Source": "/var/lib/docker/",
+                "Target": "/var/lib/docker",
+                "ReadOnly": true
+              }
+            ]
+          },
+          "Resources": {
+            "Limits": {},
+            "Reservations": {}
+          },
+          "RestartPolicy": {
+            "Condition": "any",
+            "MaxAttempts": 0
+          },
+          "Placement": {}
+        },
+        "Mode": {
+          "Global": {}
+        },
+        "UpdateConfig": {
+          "Parallelism": 1,
+          "FailureAction": "pause"
+        },
+        "Networks": [
+          {
+            "Target": "973y372ib0liqofd4y0071cjg"
+          }
+        ],
+        "EndpointSpec": {
+          "Mode": "vip",
+          "Ports": [
+            {
+              "Protocol": "tcp",
+              "TargetPort": 8080,
+              "PublishedPort": 8080
+            }
+          ]
+        }
+      },
+      "Endpoint": {
+        "Spec": {
+          "Mode": "vip",
+          "Ports": [
+            {
+              "Protocol": "tcp",
+              "TargetPort": 8080,
+              "PublishedPort": 8080
+            }
+          ]
+        },
+        "Ports": [
+          {
+            "Protocol": "tcp",
+            "TargetPort": 8080,
+            "PublishedPort": 8080
+          }
+        ],
+        "VirtualIPs": [
+          {
+            "NetworkID": "4h9nor6ul91sj8atl91b1bzts",
+            "Addr": "10.255.0.8/16"
+          },
+          {
+            "NetworkID": "973y372ib0liqofd4y0071cjg",
+            "Addr": "10.0.0.4/24"
+          }
+        ]
+      },
+      "UpdateStatus": {
+        "StartedAt": "0001-01-01T00:00:00Z",
+        "CompletedAt": "0001-01-01T00:00:00Z"
+      }
+    },
+    {
+      "ID": "25kfcdre3x223hksp3kxacn29",
+      "Version": {
+        "Index": 25
+      },
+      "CreatedAt": "2016-11-01T13:04:20.737345546Z",
+      "UpdatedAt": "2016-11-01T13:04:20.738045667Z",
+      "Spec": {
+        "Name": "kafka",
+        "TaskTemplate": {
+          "ContainerSpec": {
+            "Image": "flozano/kafka",
+            "Env": [
+              "KAFKA=10.0.7.11:9092",
+              "ZOOKEEPER=10.0.7.11:2181"
+            ]
+          },
+          "Resources": {
+            "Limits": {},
+            "Reservations": {
+              "MemoryBytes": 3221225472
+            }
+          },
+          "RestartPolicy": {
+            "Condition": "any",
+            "MaxAttempts": 0
+          },
+          "Placement": {}
+        },
+        "Mode": {
+          "Replicated": {
+            "Replicas": 1
+          }
+        },
+        "UpdateConfig": {
+          "Parallelism": 1,
+          "FailureAction": "pause"
+        },
+        "Networks": [
+          {
+            "Target": "973y372ib0liqofd4y0071cjg"
+          }
+        ],
+        "EndpointSpec": {
+          "Mode": "vip",
+          "Ports": [
+            {
+              "Protocol": "tcp",
+              "TargetPort": 9092,
+              "PublishedPort": 9092
+            },
+            {
+              "Protocol": "tcp",
+              "TargetPort": 2181,
+              "PublishedPort": 2181
+            }
+          ]
+        }
+      },
+      "Endpoint": {
+        "Spec": {
+          "Mode": "vip",
+          "Ports": [
+            {
+              "Protocol": "tcp",
+              "TargetPort": 9092,
+              "PublishedPort": 9092
+            },
+            {
+              "Protocol": "tcp",
+              "TargetPort": 2181,
+              "PublishedPort": 2181
+            }
+          ]
+        },
+        "Ports": [
+          {
+            "Protocol": "tcp",
+            "TargetPort": 9092,
+            "PublishedPort": 9092
+          },
+          {
+            "Protocol": "tcp",
+            "TargetPort": 2181,
+            "PublishedPort": 2181
+          }
+        ],
+        "VirtualIPs": [
+          {
+            "NetworkID": "4h9nor6ul91sj8atl91b1bzts",
+            "Addr": "10.255.0.6/16"
+          },
+          {
+            "NetworkID": "973y372ib0liqofd4y0071cjg",
+            "Addr": "10.0.0.2/24"
+          }
+        ]
+      },
+      "UpdateStatus": {
+        "StartedAt": "0001-01-01T00:00:00Z",
+        "CompletedAt": "0001-01-01T00:00:00Z"
+      }
+    }
+  ]
+}
