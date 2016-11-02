@@ -1,0 +1,53 @@
+.Modal {
+
+}
+
+.Modal-Visible {
+    display: block;
+}
+
+.Modal-Hidden {
+    display: none;
+}
+
+.ModalAlert-ModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ModalAlert-Modal {
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -100px;
+
+    padding: 20px;
+
+    color: white;
+    background-color: #ff6961;
+    border: 1px solid #ff2015;
+    border-radius: 3px;
+}
+
+.ModalAlert-Modal button {
+    position: absolute;
+    bottom: 10px;
+    width: 64px;
+    height: 32px;
+    border: none;
+    background-color: white;
+
+    margin-left: -25px;
+    left: 50%;
+}
+
+.ModalAlert-Modal button:hover {
+    cursor: pointer;
+}

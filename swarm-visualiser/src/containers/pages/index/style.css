@@ -19,6 +19,9 @@
 .IndexPage-Footer {
     border-top: 1px solid #445d6e;
     height: 50px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 50px;
 }
 
 .App-header {

@@ -16,7 +16,9 @@ The store also takes care of dispatching actions
 * **The Reducers:** These tell the store how an action changes the state. The different reducers each manage a separate key, and return the changes to the root reducer.
 * **The Views:** There are 2 different views, a smart component and a dumb component
     * **Smart Component:** These are in charge of the actions, dumb components can call actions through callbacks that the smart component provides in the props. They do not have their own CSS styles and rarely emit DOM of their own.
+        * In short, Smart Components talk to the store and are stored in the **containers** folder.
     * **Dumb Component:** These can be reused in a different app since they rely on callbacks. (These also contain the CSS styles.)
+        * In short, Dum Components take care of the presentation (the visual part) and are stored in the **components** folder.
 * **The View Layer Binding:** This connects the store to the views and introduces 3 concepts:
     * **The Provider Component:** Wrapped around the component tree, it makes it easy for the root component's children to hook up to the store using connect().
     * **connect():** Through this a component can get state updates, the connect function will then set up all the wiring for it using the selector.
@@ -41,3 +43,4 @@ The store also takes care of dispatching actions
 
 > https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207#.g1qn7q8d0
 > https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6#.crvplh5lg
+> https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.zejjo3iz9

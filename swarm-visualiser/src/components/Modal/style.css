@@ -1,0 +1,11 @@
+.Modal {
+
+}
+
+.Modal-Visible {
+    display: block;
+}
+
+.Modal-Hidden {
+    display: none;
+}
