@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import Swarm from '../../../components/Swarm';
 import MainLayout from '../../layouts/main';
 import Chart from 'chart.js';
 
-
-
-
 class ContainerStatsPage extends Component {
+    constructor() {
+        super();
+        this.points = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+    }
+
     // After render, init the chart
     componentDidUpdate() {
         var ctx = document.getElementById("myChart");
+
+        if (!ctx) {
+            return;
+        }
 
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -19,21 +24,32 @@ class ContainerStatsPage extends Component {
                 labels: [ '', '', '', '', '', '', '', '', '', '' ],
                 datasets: [{
                     label: 'RAM Usage',
-                    data: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    data: this.points,
                     backgroundColor: "rgba(153,255,51,0.4)"
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                animation: false
             }
         });
 
-        setInterval(() => {
-            myChart.data.datasets[0].data.push(Math.floor(Math.random() * 30));
-            myChart.data.datasets[0].data = myChart.data.datasets[0].data.splice(1, 10);
-            myChart.update();
-        }, 1000);
+        const stats = this.props.socketIO.stats[this.props.containerId];
+
+        if (!stats) {
+            return;
+        }
+//stats.container_stats.memory.usage | stats.container_stats.cpu.usage.total
+        // setInterval(() => {
+
+        this.points.push(stats.container_stats.memory.usage / 1024 / 1024);
+        this.points = this.points.splice(1, 10);
+        console.log(this.points);
+        myChart.data.datasets[0].data = this.points;
+        myChart.update();
+
+        // }, 1000);
     }
 
     render() {
@@ -59,7 +75,8 @@ class ContainerStatsPage extends Component {
 // State to props binding
 const mapStateToProps = (state, ownProps) => ({
     containers: state.swarmTasks,
-    containerId: ownProps.params.containerId
+    containerId: ownProps.params.containerId,
+    socketIO: state.socketIO
 });
 
 export default connect(
