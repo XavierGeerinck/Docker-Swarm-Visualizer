@@ -4,11 +4,11 @@ import swarmTasks from './swarmTasks';
 import modal from './modal';
 import socketIO from './socketIO';
 
-const app = combineReducers({
+const app = {
     swarmNodes,
     swarmTasks,
     modal,
     socketIO
-});
+};
 
 export default app;

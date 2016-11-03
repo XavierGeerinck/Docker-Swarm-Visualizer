@@ -1,0 +1,25 @@
+.MainLayout {
+    text-align: center;
+    background-color: #254356;
+    color: white;
+    height: 100%;
+}
+
+.MainLayout-Header {
+    border-bottom: 1px solid #445d6e;
+    height: 150px;
+}
+
+.MainLayout-Content {
+    padding: 20px 40px;
+    height: calc(100% - 202px); /* 200 box size and 2px borders */
+    box-sizing: border-box;
+}
+
+.MainLayout-Footer {
+    border-top: 1px solid #445d6e;
+    height: 50px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 50px;
+}

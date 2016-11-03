@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 import Alert from '../Alert';
 
 const SwarmNodeContainer = ({ container, socketIO }) => {
-    const alert = socketIO.alerts[container.ID];
-console.log(socketIO);
+    const model = socketIO.models[container.ID];
     let error = null;
 
-    console.log(alert);
-    if (alert) {
-        let regression = `${alert.model_slope}*x + ${alert.model_intercept}`;
+    if (model) {
+        let regression = `${model.model_slope}*x + ${model.model_intercept}`;
         let calculatedBottleneck = 0.0; // TODO
         error = `Expected container to hit bottleneck at ${new Date()} with calculated regression ${regression}`;
     }

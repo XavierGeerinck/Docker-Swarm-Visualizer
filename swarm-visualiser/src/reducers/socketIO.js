@@ -1,7 +1,7 @@
 import { SOCKET_IO_RECEIVE } from '../constants/ActionTypes';
 
 const initialState = {
-	alerts: {} // This is an object of container_ids containing the data
+	models: {} // This is an object of container_ids containing the data
 };
 
 const socketIO = (state = initialState, action) => {
@@ -12,8 +12,8 @@ const socketIO = (state = initialState, action) => {
 			let newState = JSON.parse(JSON.stringify(state));
 
 			switch (action.data.type) {
-				case 'ALERT':
-					newState.alerts[containerId] = newAction.data;
+				case 'MODEL':
+					newState.models[containerId] = newAction.data;
 					break;
 				default:
 					// Not implemented
