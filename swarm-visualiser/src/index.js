@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HomePage from './containers/pages/index';
+import ContainerStatsPage from './containers/pages/containerStats';
+import NotFoundPage from './containers/pages/404';
 import './index.css';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,10 +12,9 @@ import { getAllSwarmNodes, getAllContainers } from './actions';
 import * as SocketIOActions from './actions/socketIO';
 import thunk from 'redux-thunk'; // Allows us to write action creators that return a function instead of an action (async calls such as REST)
 import io from 'socket.io-client';
-import MainLayout from './containers/layouts/main';
 
 // React router imports
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 // Configure middleware
@@ -56,8 +57,10 @@ ReactDOM.render(
   <Provider store={store}>
       { /* Tell the Router to use our enhanced history */ }
       <Router history={history}>
-          <Route path="/" component={HomePage}>
-              <Route path="test" component={HomePage}/>
+          <Route path="/">
+              <IndexRoute component={HomePage}/>
+              <Route path="container/:containerId" component={ContainerStatsPage}/>
+              <Route path="*" component={NotFoundPage}/>
           </Route>
       </Router>
   </Provider>,

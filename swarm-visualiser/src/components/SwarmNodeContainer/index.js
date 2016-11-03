@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import { connect } from 'react-redux';
 import Alert from '../Alert';
+import { browserHistory } from 'react-router'
 
 const SwarmNodeContainer = ({ container, socketIO }) => {
     const model = socketIO.models[container.ID];
@@ -14,7 +15,9 @@ const SwarmNodeContainer = ({ container, socketIO }) => {
     }
 
     return (
-        <div className="SwarmNodeContainer">
+        <div className="SwarmNodeContainer" onClick={(e) => {
+            browserHistory.push(`/container/${container.ID}`);
+        }}>
             <div className={`SwarmNodeContainer-Header-Status-${container.Status.State}`}></div>
 
             <div className="SwarmNodeContainer-Header">

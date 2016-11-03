@@ -25,3 +25,13 @@ export const getRunningTasks = (callback) => {
         return callback(json);
     });
 };
+
+export const getContainerById = (containerId, callback) => {
+    fetch(`${config.docker_host_api}/tasks/${containerId}`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((json) => {
+        return callback(json);
+    });
+};

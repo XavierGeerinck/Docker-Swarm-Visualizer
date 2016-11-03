@@ -7,6 +7,10 @@
     position: relative;
 }
 
+.SwarmNodeContainer:hover {
+    cursor: pointer;
+}
+
 .SwarmNodeContainer-Header-Status-stopped {
     background: red;
     width: 10px;
