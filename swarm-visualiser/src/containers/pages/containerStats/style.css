@@ -1,0 +1,15 @@
+.ContainerStats-Button-GoBack {
+    position: absolute;
+    left: 10px;
+
+    padding: 7px 10px;
+    border: 1px solid #547287;
+    background-color: #445d6e;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.ContainerStats-Button-GoBack:hover{
+    cursor: pointer;
+    background-color: #547287;
+}

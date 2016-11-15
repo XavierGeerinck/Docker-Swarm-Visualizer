@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
 import './style.css';
 import Swarm from '../../../components/Swarm';
 import MainLayout from '../../layouts/main';

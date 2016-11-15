@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import { connect } from 'react-redux';
 import Alert from '../Alert';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
 const SwarmNodeContainer = ({ container, socketIO }) => {
     const model = socketIO.models[container.ID];

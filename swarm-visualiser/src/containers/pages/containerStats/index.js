@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './style.css';
 import MainLayout from '../../layouts/main';
 import Chart from 'chart.js';
+import { browserHistory } from 'react-router';
 
 class ContainerStatsPage extends Component {
     constructor() {
@@ -61,6 +62,9 @@ class ContainerStatsPage extends Component {
 
         return (
             <MainLayout>
+                <button className="ContainerStats-Button-GoBack" onClick={(e) => {
+                    browserHistory.push(`/`);
+                }}>&lt; Go Back</button>
                 {task.Spec.ContainerSpec.Image}<br />
                 {task.Status.State}<br />
                 {task.Status.ContainerStatus.ContainerID}<br />
