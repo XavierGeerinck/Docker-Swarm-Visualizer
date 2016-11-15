@@ -13,3 +13,9 @@
     cursor: pointer;
     background-color: #547287;
 }
+
+.ContainerStats-Statistics {
+    margin: 15px auto;
+    max-width: 70%;
+    max-height: 300px;
+}

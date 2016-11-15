@@ -14,8 +14,7 @@ const IndexPage = ({ dispatch, onButtonClick, swarmNodes, containers, modal }) =
 const mapStateToProps = state => ({
     swarmNodes: state.swarmNodes,
     containers: state.swarmTasks,
-    modal: state.modal,
-    socketIO: state.socketIO
+    modal: state.modal
 });
 
 export default connect(

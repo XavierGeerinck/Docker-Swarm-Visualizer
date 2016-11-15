@@ -4,16 +4,54 @@ import './style.css';
 import MainLayout from '../../layouts/main';
 import Chart from 'chart.js';
 import { browserHistory } from 'react-router';
+import io from 'socket.io-client';
 
 class ContainerStatsPage extends Component {
     constructor() {
         super();
-        this.points = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        this.pointsStatistics = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        this.pointsModel = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ];
+
+        this.socket = io('http://127.0.0.1:5001');
+        // let socket = io('http://10.48.98.232:5001');
+        this.socket.on('connect', () => {
+            console.log('connected');
+        });
+
+        this.socket.on('disconnect', () => {
+            console.log('disconnected');
+        });
+
+        this.models = {};
+        this.stats = {};
+    }
+
+    componentDidMount() {
+        this.socket.on('data', (data) => {
+            switch (data.type) {
+                case 'MODEL':
+                    let containerId = data.data.container_name.split(".")[2];
+                    this.models[containerId] = data.data;
+                    break;
+                case 'STATS':
+                    containerId = data.data.container_Name.split(".")[2];
+                    this.stats[containerId] = data.data;
+                    break;
+                default:
+                // Not implemented
+            }
+
+            this.updateStats();
+        });
     }
 
     // After render, init the chart
     componentDidUpdate() {
-        var ctx = document.getElementById("myChart");
+        this.updateStats();
+    }
+
+    updateStats() {
+        var ctx = document.getElementById("chart");
 
         if (!ctx) {
             return;
@@ -23,11 +61,20 @@ class ContainerStatsPage extends Component {
             type: 'line',
             data: {
                 labels: [ '', '', '', '', '', '', '', '', '', '' ],
-                datasets: [{
-                    label: 'RAM Usage',
-                    data: this.points,
-                    backgroundColor: "rgba(153,255,51,0.4)"
-                }]
+                datasets: [
+                    {
+                        label: 'RAM Usage',
+                        data: this.pointsStatistics,
+                        backgroundColor: undefined,
+                        borderColor: "rgba(66, 139, 202, 1)"
+                    },
+                    {
+                        label: 'Predicted RAM Usage',
+                        data: this.pointsModel,
+                        backgroundColor: undefined,
+                        borderColor: "rgba(217, 83, 79, 1)"
+                    }
+                ]
             },
             options: {
                 responsive: true,
@@ -36,21 +83,34 @@ class ContainerStatsPage extends Component {
             }
         });
 
-        const stats = this.props.socketIO.stats[this.props.containerId];
+        const stats = this.stats[this.props.containerId];
+        const model = this.models[this.props.containerId];
 
-        if (!stats) {
-            return;
+
+        // Push the container statistic and cap them at 10 points
+        if (stats) {
+            //stats.container_stats.memory.usage | stats.container_stats.cpu.usage.total
+            this.pointsStatistics.push(stats.container_stats.memory.usage / 1024 / 1024);
+            this.pointsStatistics = this.pointsStatistics.splice(1, 10);
+            myChart.data.datasets[0].data = this.pointsStatistics;
         }
-//stats.container_stats.memory.usage | stats.container_stats.cpu.usage.total
-        // setInterval(() => {
 
-        this.points.push(stats.container_stats.memory.usage / 1024 / 1024);
-        this.points = this.points.splice(1, 10);
-        console.log(this.points);
-        myChart.data.datasets[0].data = this.points;
+        // Push the container predictions and cap them at 10 points
+
+        if (model) {
+            let regression = `${model.model_slope} * x + ${model.model_intercept}`;
+            console.log(regression);
+
+            let y = model.model_slope * ((new Date()).getTime() / 1000) + model.model_intercept;
+            y /= 1024; // To kb
+            y /= 1024; // To Mb
+            this.pointsModel.push(y);
+            this.pointsModel = this.pointsModel.splice(1, 10);
+            myChart.data.datasets[1].data = this.pointsModel;
+        }
+
+        // Refresh the graph
         myChart.update();
-
-        // }, 1000);
     }
 
     render() {
@@ -65,11 +125,13 @@ class ContainerStatsPage extends Component {
                 <button className="ContainerStats-Button-GoBack" onClick={(e) => {
                     browserHistory.push(`/`);
                 }}>&lt; Go Back</button>
+
                 {task.Spec.ContainerSpec.Image}<br />
                 {task.Status.State}<br />
                 {task.Status.ContainerStatus.ContainerID}<br />
                 {task.Spec.ContainerSpec.Args ? task.Spec.ContainerSpec.Args.join(" ") : null}
-                <canvas id="myChart" width="200" height="200" style={{height: '200px', width: '200px'}}></canvas>
+
+                <canvas id="chart" className="ContainerStats-Statistics"></canvas>
 
             </MainLayout>
         );

@@ -39,20 +39,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 store.dispatch(getAllSwarmNodes());
 store.dispatch(getAllContainers());
 
-let socket = io('http://127.0.0.1:5001');
-// let socket = io('http://10.48.98.232:5001');
-socket.on('connect', () => {
-    console.log('connected');
-});
-
-socket.on('data', (data) => {
-    store.dispatch(SocketIOActions.receiveSocketData(data));
-});
-
-socket.on('disconnect', () => {
-    console.log('disconnected');
-});
-
 ReactDOM.render(
   <Provider store={store}>
       { /* Tell the Router to use our enhanced history */ }
