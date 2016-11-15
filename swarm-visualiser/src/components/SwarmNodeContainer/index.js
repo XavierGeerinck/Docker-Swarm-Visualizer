@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import Alert from '../Alert';
 import { browserHistory } from 'react-router';
 
-const SwarmNodeContainer = ({ container, socketIO }) => {
-    const model = socketIO.models[container.ID];
+const SwarmNodeContainer = ({ container }) => {
+    // const model = socketIO.models[container.ID];
     let error = null;
-
-    if (model) {
-        let regression = `${model.model_slope}*x + ${model.model_intercept}`;
-        let calculatedBottleneck = 0.0; // TODO
-        error = `Expected container to hit bottleneck at ${new Date()} with calculated regression ${regression}`;
-    }
+    //
+    // if (model) {
+    //     let regression = `${model.model_slope}*x + ${model.model_intercept}`;
+    //     let calculatedBottleneck = 0.0; // TODO
+    //     error = `Expected container to hit bottleneck at ${new Date()} with calculated regression ${regression}`;
+    // }
 
     return (
         <div className="SwarmNodeContainer" onClick={(e) => {

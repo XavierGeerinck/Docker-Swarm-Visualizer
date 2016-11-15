@@ -9,9 +9,7 @@ import { Provider } from 'react-redux';
 import createLogger from 'redux-logger'; // Logger
 import reducer from './reducers';
 import { getAllSwarmNodes, getAllContainers } from './actions';
-import * as SocketIOActions from './actions/socketIO';
 import thunk from 'redux-thunk'; // Allows us to write action creators that return a function instead of an action (async calls such as REST)
-import io from 'socket.io-client';
 
 // React router imports
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';

@@ -11,6 +11,7 @@ class ContainerStatsPage extends Component {
         super();
         this.pointsStatistics = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
         this.pointsModel = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ];
+        this.pointsThreshold = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ];
 
         this.socket = io('http://127.0.0.1:5001');
         // let socket = io('http://10.48.98.232:5001');
@@ -45,6 +46,13 @@ class ContainerStatsPage extends Component {
         });
     }
 
+    componentWillUnmount() {
+        console.log('UNMOUNTING');
+        //this.socket._onDisconnect();
+        this.socket.disconnect();
+        this.socket = undefined;
+    }
+
     // After render, init the chart
     componentDidUpdate() {
         this.updateStats();
@@ -73,6 +81,12 @@ class ContainerStatsPage extends Component {
                         data: this.pointsModel,
                         backgroundColor: undefined,
                         borderColor: "rgba(217, 83, 79, 1)"
+                    },
+                    {
+                        label: 'Threshold',
+                        data: this.pointsThreshold,
+                        backgroundColor: undefined,
+                        borderColor: "rgba(255, 255, 255, 1)"
                     }
                 ]
             },
@@ -96,7 +110,6 @@ class ContainerStatsPage extends Component {
         }
 
         // Push the container predictions and cap them at 10 points
-
         if (model) {
             let regression = `${model.model_slope} * x + ${model.model_intercept}`;
             console.log(regression);
@@ -109,8 +122,23 @@ class ContainerStatsPage extends Component {
             myChart.data.datasets[1].data = this.pointsModel;
         }
 
+        // Push the threshold
+        let threshold = 3.5 * 1024; // (3,5Gb);
+        let thresholdBytes = threshold * 1024 * 1024; // Threshold in bytes
+        this.pointsThreshold.push(threshold);
+        this.pointsThreshold = this.pointsThreshold.splice(1, 10);
+        myChart.data.datasets[2].data = this.pointsThreshold;
+
         // Refresh the graph
         myChart.update();
+
+        // Set new prediction, note that this also happens with a javascript dom change since else we need to rerender everything
+        // Formula: (threshold - model_intercept) / model_slope
+        if (model) {
+            let predictedX = (thresholdBytes - model.model_intercept) / model.model_slope;
+            document.querySelector('#predicted-time').innerHTML = new Date(predictedX * 1000).toString();
+            console.log(new Date(predictedX * 1000).toString());
+        }
     }
 
     render() {
@@ -130,6 +158,8 @@ class ContainerStatsPage extends Component {
                 {task.Status.State}<br />
                 {task.Status.ContainerStatus.ContainerID}<br />
                 {task.Spec.ContainerSpec.Args ? task.Spec.ContainerSpec.Args.join(" ") : null}
+
+                <p>Expect prediction to be met at: <span id="predicted-time"></span></p>
 
                 <canvas id="chart" className="ContainerStats-Statistics"></canvas>
 
