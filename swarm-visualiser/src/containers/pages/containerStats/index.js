@@ -13,6 +13,10 @@ class ContainerStatsPage extends Component {
         this.pointsModel = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ];
         this.pointsThreshold = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ];
 
+        this.state = {
+            threshold: 3 * 1024
+        };
+
         this.socket = io('http://127.0.0.1:5001');
         // let socket = io('http://10.48.98.232:5001');
         this.socket.on('connect', () => {
@@ -47,8 +51,6 @@ class ContainerStatsPage extends Component {
     }
 
     componentWillUnmount() {
-        console.log('UNMOUNTING');
-        //this.socket._onDisconnect();
         this.socket.disconnect();
         this.socket = undefined;
     }
@@ -123,9 +125,7 @@ class ContainerStatsPage extends Component {
         }
 
         // Push the threshold
-        let threshold = 3.5 * 1024; // (3,5Gb);
-        let thresholdBytes = threshold * 1024 * 1024; // Threshold in bytes
-        this.pointsThreshold.push(threshold);
+        this.pointsThreshold.push(this.state.threshold);
         this.pointsThreshold = this.pointsThreshold.splice(1, 10);
         myChart.data.datasets[2].data = this.pointsThreshold;
 
@@ -135,14 +135,23 @@ class ContainerStatsPage extends Component {
         // Set new prediction, note that this also happens with a javascript dom change since else we need to rerender everything
         // Formula: (threshold - model_intercept) / model_slope
         if (model) {
+            console.log(this.state.threshold);
+            let thresholdBytes = this.state.threshold * 1024 * 1024; // Threshold in bytes
             let predictedX = (thresholdBytes - model.model_intercept) / model.model_slope;
             document.querySelector('#predicted-time').innerHTML = new Date(predictedX * 1000).toString();
             console.log(new Date(predictedX * 1000).toString());
         }
     }
 
+    handleThresholdChange(e) {
+        this.setState({
+            threshold: e.target.value
+        });
+    }
+
     render() {
         let task = this.props.containers.filter(c => c.ID == this.props.containerId)[0];
+        let threshold = this.state.threshold;
 
         if (!task) {
             return null;
@@ -159,10 +168,14 @@ class ContainerStatsPage extends Component {
                 {task.Status.ContainerStatus.ContainerID}<br />
                 {task.Spec.ContainerSpec.Args ? task.Spec.ContainerSpec.Args.join(" ") : null}
 
+                <div>
+                    <label for="threshold">Threshold (in Mb):</label>
+                    <input type="number" name="threshold" value={threshold} onChange={this.handleThresholdChange.bind(this)} />
+                </div>
+
                 <p>Expect prediction to be met at: <span id="predicted-time"></span></p>
 
                 <canvas id="chart" className="ContainerStats-Statistics"></canvas>
-
             </MainLayout>
         );
     }
