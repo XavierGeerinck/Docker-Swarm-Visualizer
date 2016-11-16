@@ -32,42 +32,14 @@ class ContainerStatsPage extends Component {
     }
 
     componentDidMount() {
-        this.socket.on('data', (data) => {
-            switch (data.type) {
-                case 'MODEL':
-                    let containerId = data.data.container_name.split(".")[2];
-                    this.models[containerId] = data.data;
-                    break;
-                case 'STATS':
-                    containerId = data.data.container_Name.split(".")[2];
-                    this.stats[containerId] = data.data;
-                    break;
-                default:
-                // Not implemented
-            }
-
-            this.updateStats();
-        });
-    }
-
-    componentWillUnmount() {
-        this.socket.disconnect();
-        this.socket = undefined;
-    }
-
-    // After render, init the chart
-    componentDidUpdate() {
-        this.updateStats();
-    }
-
-    updateStats() {
+        // Configure our graph
         var ctx = document.getElementById("chart");
 
         if (!ctx) {
             return;
         }
 
-        var myChart = new Chart(ctx, {
+        this.myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: [ '', '', '', '', '', '', '', '', '', '' ],
@@ -99,6 +71,36 @@ class ContainerStatsPage extends Component {
             }
         });
 
+        // Configure socket io
+        this.socket.on('data', (data) => {
+            switch (data.type) {
+                case 'MODEL':
+                    let containerId = data.data.container_name.split(".")[2];
+                    this.models[containerId] = data.data;
+                    break;
+                case 'STATS':
+                    containerId = data.data.container_Name.split(".")[2];
+                    this.stats[containerId] = data.data;
+                    break;
+                default:
+                // Not implemented
+            }
+
+            this.updateStats();
+        });
+    }
+
+    componentWillUnmount() {
+        this.socket.disconnect();
+        this.socket = undefined;
+    }
+
+    // After render, init the chart, also redraw on threshold change
+    componentDidUpdate() {
+        this.updateStats();
+    }
+
+    updateStats() {
         const stats = this.stats[this.props.containerId];
         const model = this.models[this.props.containerId];
 
@@ -108,7 +110,7 @@ class ContainerStatsPage extends Component {
             //stats.container_stats.memory.usage | stats.container_stats.cpu.usage.total
             this.pointsStatistics.push(stats.container_stats.memory.usage / 1024 / 1024);
             this.pointsStatistics = this.pointsStatistics.splice(1, 10);
-            myChart.data.datasets[0].data = this.pointsStatistics;
+            this.myChart.data.datasets[0].data = this.pointsStatistics;
         }
 
         // Push the container predictions and cap them at 10 points
@@ -121,16 +123,16 @@ class ContainerStatsPage extends Component {
             y /= 1024; // To Mb
             this.pointsModel.push(y);
             this.pointsModel = this.pointsModel.splice(1, 10);
-            myChart.data.datasets[1].data = this.pointsModel;
+            this.myChart.data.datasets[1].data = this.pointsModel;
         }
 
         // Push the threshold
         this.pointsThreshold.push(this.state.threshold);
         this.pointsThreshold = this.pointsThreshold.splice(1, 10);
-        myChart.data.datasets[2].data = this.pointsThreshold;
+        this.myChart.data.datasets[2].data = this.pointsThreshold;
 
         // Refresh the graph
-        myChart.update();
+        this.myChart.update();
 
         // Set new prediction, note that this also happens with a javascript dom change since else we need to rerender everything
         // Formula: (threshold - model_intercept) / model_slope
