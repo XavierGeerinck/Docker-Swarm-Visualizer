@@ -4,6 +4,13 @@ This is the complete recode of the Docker Swarm Visualiser as initially created 
 * For my thesis, Socket.IO had to be built in and other changes such as the support for statistics were needed
 * The initial project by ManoMarks was hard to setup, this new recode uses a proxy server created in node that can easily be started and changed.
 
+# Features
+* Paging system
+* Load in the swarm state with its different nodes and the services running on it
+* Communicate with the Docker CLI through a Proxy Server 
+* Socket.IO built in to read data from a kafka-topic (work to be done here)
+* Statistics page that can show a threshold, predictions and real-time statistics (work to be done here)
+
 # Setup
 ## Setting up the Proxy Server
 The Frontend application uses a proxy connection to connect to the Docker container where our Swarm Cluster is running. To get this server working follow these steps
