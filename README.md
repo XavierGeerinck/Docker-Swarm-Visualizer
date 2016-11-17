@@ -1,3 +1,9 @@
+# Introduction
+This is the complete recode of the Docker Swarm Visualiser as initially created by https://github.com/ManoMarks/docker-swarm-visualizer. There were several reasons that contributed to creating this recode:
+* A more extensible project that uses components and different pages
+* For my thesis, Socket.IO had to be built in and other changes such as the support for statistics were needed
+* The initial project by ManoMarks was hard to setup, this new recode uses a proxy server created in node that can easily be started and changed.
+
 # Setup
 ## Setting up the Proxy Server
 The Frontend application uses a proxy connection to connect to the Docker container where our Swarm Cluster is running. To get this server working follow these steps
